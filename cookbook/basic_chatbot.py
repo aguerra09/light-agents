@@ -1,7 +1,7 @@
 from openai import OpenAI
 
 from agent.light_agent import AgentConfig, LightAgent
-from utils.conversation import Conversation
+from modules.conversation import Conversation
 
 if __name__ == '__main__':
     client = OpenAI()
@@ -16,5 +16,5 @@ if __name__ == '__main__':
         if user_input == "exit":
             break
 
-        response = agent.execute(conversation.add_user_message(user_input))
+        agent.execute([conversation.create_message(role='user', content=user_input)])
         print(response)
